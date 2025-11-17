@@ -1,8 +1,8 @@
 # Oblique Cursor
 
-![oblique-cursor](https://repository-images.githubusercontent.com/1098137972/692e9f6b-4dc1-4d3f-a143-686486c9a027)
-
 A simple hyprcursor theme with a slightly oblique look.
+
+<img alt="oblique-cursor" width="50%" src="https://repository-images.githubusercontent.com/1098137972/692e9f6b-4dc1-4d3f-a143-686486c9a027" />
 
 ```sh
 # Clone the repository
