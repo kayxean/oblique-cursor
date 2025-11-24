@@ -1,5 +1,5 @@
 resize_algorithm = none
 hotspot_x = 0
 hotspot_y = 0
-define_override = grab;openhand
+define_override = grab
 define_size = 0, grab.svg
