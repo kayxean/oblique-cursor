@@ -1,5 +1,5 @@
 resize_algorithm = none
 hotspot_x = 0
 hotspot_y = 0
-define_override = wait;watch
+define_override = wait
 define_size = 0, wait.svg

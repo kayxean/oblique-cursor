@@ -1,5 +1,5 @@
 resize_algorithm = none
 hotspot_x = 0
 hotspot_y = 0
-define_override = se-resize;bottom_right_corner
+define_override = se-resize
 define_size = 0, resize-se.svg
