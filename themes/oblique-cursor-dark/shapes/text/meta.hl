@@ -1,0 +1,5 @@
+resize_algorithm = none
+hotspot_x = 0.125
+hotspot_y = 0
+define_override = text;xterm;ibeam
+define_size = 0, text.svg
