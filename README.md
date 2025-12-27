@@ -58,3 +58,4 @@ Resources:
 - [Creating a theme](https://github.com/hyprwm/hyprcursor/blob/main/docs/MAKING_THEMES.md)
 - [Using hyprcursor theme](https://github.com/hyprwm/hyprcursor/blob/main/docs/END_USERS.md)
 - [hyprcursor-util](https://github.com/hyprwm/hyprcursor/blob/main/hyprcursor-util/README.md)
+- [CSS Cursor demo](https://codepen.io/kayxean/full/MYywMMx)
