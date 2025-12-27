@@ -1,0 +1,5 @@
+resize_algorithm = none
+hotspot_x = 0.325
+hotspot_y = 0
+define_override = vertical-text
+define_size = 0, text-vertical.svg

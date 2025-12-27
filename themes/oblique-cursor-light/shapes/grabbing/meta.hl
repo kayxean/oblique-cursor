@@ -1,0 +1,5 @@
+resize_algorithm = none
+hotspot_x = 0.375
+hotspot_y = 0
+define_override = grabbing;closedhand
+define_size = 0, grabbing.svg
