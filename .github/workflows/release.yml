@@ -1,0 +1,39 @@
+name: Release Cursor Themes
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Rename and Compress Themes
+        run: |
+          mkdir staging
+          # Loop through the folders in dist/
+          for dir in dist/theme_*; do
+            # Extract the name and remove 'theme_'
+            original_name=$(basename "$dir")
+            new_name=${original_name#theme_}
+
+            # Copy to staging with the clean name
+            cp -r "$dir" "staging/$new_name"
+
+            # Create a compressed file (e.g., oblique-cursor.tar.gz)
+            tar -czf "${new_name}.tar.gz" -C staging "$new_name"
+          done
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: "*.tar.gz"
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
