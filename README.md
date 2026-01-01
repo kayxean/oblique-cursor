@@ -1,61 +1,59 @@
 # Oblique Cursor
 
-A simple hyprcursor theme with a slightly oblique look.
+A simple hyprcursor theme with a slightly oblique look. Most cursors are either too vertical or too flashy; I wanted something that felt a bit more natural for Hyprland.
 
-<img width="1920" height="823" alt="oblique-cursor" src="https://github.com/user-attachments/assets/83c4c67d-8421-4e2d-bf4b-5fc0473b5983" />
+![oblique-cursor](https://github.com/user-attachments/assets/83c4c67d-8421-4e2d-bf4b-5fc0473b5983)
 
-## Installation
+The shapes are based on [macOS 26](https://www.figma.com/community/file/1543337041090580818/macos-26) — I basically took that aesthetic and tuned it to work properly with `hyprcursor`.
 
-1. Visit the [GitHub release page](https://github.com/kayxean/oblique-cursor/releases) and download the latest version of the cursor theme. Make sure to choose the archive that corresponds to the specific variant you want to use.
-2. Move the extracted cursor theme directory into `~/.local/share/icons`. If this folder does not exist on your system, you can create it manually to ensure the theme is recognized by your desktop environment.
-3. Apply your changes by setting the default cursor through the command line. Run `hyprctl setcursor <theme> <size>`, ensuring you replace `<theme>` with the exact name of the theme folder and `<size>` with your preferred cursor scale (e.g., 24).
-    ```sh
-    hyprctl setcursor oblique-cursor 24
-    ```
+## Get it running
 
-### Manual
-1. **Clone the repository**:
-    Begin by cloning the source code repository from GitHub to your local machine. This will download all the necessary source assets and manifests required to build the cursor theme from scratch.
-    ```sh
-    git clone https://github.com/kayxean/oblique-cursor.git
-    ```
-2. **Navigate to the themes directory**:
-    Change your working directory to the `themes` folder inside the cloned repository. This directory contains the source configuration files that the utility will use to generate the theme.
-    ```sh
-    cd oblique-cursor/themes
-    ```
-3. **Generate the theme files**:
-    Use the `hyprcursor-util` tool to compile the source files into a usable hyprcursor theme. The following command will create the theme and place the output files into a `dist` directory located at the project root.
-    ```sh
-    hyprcursor-util --create oblique-cursor --output ../dist
-    ```
-4. **Create a symbolic link to the icons directory**:
-    To make the theme available to your system, create a symbolic link from the compiled output folder to your local icons directory (`~/.local/share/icons`). This allows the system to recognize the theme without moving the files out of your project folder. (Note: Ensure the source path matches the location where you cloned the repository).
-    ```sh
-    ln -s ~/repo/oblique-cursor/dist/theme_oblique-cursor ~/.local/share/icons/oblique-cursor
-    ```
-5. **Set the default cursor**:
-    Finally, apply the theme to your current session using the `hyprctl` command. Specify the theme name and your desired cursor size (e.g., 24).
-    ```sh
-    hyprctl setcursor oblique-cursor 24
-    ```
-  
-    To ensure this setting persists after a reboot, add this command to your Hyprland configuration file. (`~/.config/hypr/hyprland.conf`)
-    ```conf
-    env = HYPRCURSOR_THEME,oblique-cursor
-    env = HYPRCURSOR_SIZE,24
-    ```
+The fast way to get these on your screen.
 
-## Development
+1. **Grab the files**: Go to the [releases](https://github.com/kayxean/oblique-cursor/releases) and pick your variant.
+2. **Move them**: Stick the folder in `~/.local/share/icons`. If the folder isn't there, just create it.
+3. **Apply it**: Run this to see it immediately:
+   ```bash
+   hyprctl setcursor oblique-cursor 24
+   ```
+4. **Make it persist**: Add these to your `~/.config/hypr/hyprland.conf` so it survives a reboot:
+   ```conf
+   env = HYPRCURSOR_THEME,oblique-cursor
+   env = HYPRCURSOR_SIZE,24
+   ```
 
-Contributions are not being accepted at this time. If you are looking to create your own theme, you are encouraged to do so independently and may use this repository as an example. The `themes` directory contains the raw source files, including cursor shapes (`.svg`) and `meta.hl` files. A custom bash script is also included to help sync cursor metadata to another theme variant.
+## Building it yourself (Manual)
 
-```sh
-./sync-meta.sh --input oblique-cursor --output oblique-cursor-light
-```
+If you'd rather build it from source than download a zip, here’s the workflow:
 
-Resources:
-- [Creating a theme](https://github.com/hyprwm/hyprcursor/blob/main/docs/MAKING_THEMES.md)
-- [Using hyprcursor theme](https://github.com/hyprwm/hyprcursor/blob/main/docs/END_USERS.md)
-- [hyprcursor-util](https://github.com/hyprwm/hyprcursor/blob/main/hyprcursor-util/README.md)
-- [CSS Cursor demo](https://codepen.io/kayxean/full/MYywMMx)
+1. **Clone it**:
+   ```bash
+   git clone https://github.com/kayxean/oblique-cursor.git
+   ```
+2. **Go to the source**:
+   ```bash
+   cd oblique-cursor/themes
+   ```
+3. **Compile**: Use `hyprcursor-util` to turn the manifests into a theme.
+   ```bash
+   hyprcursor-util --create oblique-cursor --output ../dist
+   ```
+4. **Link it**: I usually just symlink it to `~/.local/share/icons` so I don't have to move files around manually.
+   ```bash
+   ln -s $(pwd)/../dist/theme_oblique-cursor ~/.local/share/icons/oblique-cursor
+   ```
+
+## Development & Stuff
+
+I’m not taking contributions right now, but feel free to poke around the `themes` folder if you want to see how this works. It’s mostly `.svg` files and `meta.hl` manifests.
+
+If you're making your own variants, I wrote a script to sync metadata so you don't have to copy-paste manifest values all day:
+   ```bash
+   ./sync-meta.sh --input oblique-cursor --output oblique-cursor-light
+   ```
+
+Useful Links:
+- [Creating a theme](https://github.com/hyprwm/hyprcursor/blob/main/docs/MAKING_THEMES.md): The blueprints. This is the technical breakdown for building from scratch, porting from XCursor, and defining hotspots.
+- [Using hyprcursor theme](https://github.com/hyprwm/hyprcursor/blob/main/docs/END_USERS.md): The "Where does this go?" guide. Covers directory paths and the environment variables needed to make the theme stick.
+- [hyprcursor-util](https://github.com/hyprwm/hyprcursor/blob/main/hyprcursor-util/README.md): The tool that does the heavy lifting. It packs and unpacks themes between raw assets and compiled binaries.
+- [CSS Cursor demo](https://codepen.io/kayxean/full/MYywMMx): A quick visual check. Just a pure CSS demo to see standard cursor behaviors in the browser.
